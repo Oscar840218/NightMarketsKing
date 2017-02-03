@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title>Index</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            function init(){
+                $("#main_area").hide().delay(200).fadeIn('slow');
+            }
+            init();
+
+        });
+
+    </script>
+    <style>
+        .glyphicon-trash{
+            font-size: 17px;
+        }
+        .img-min-height{
+            max-height: 190px;
+        }
+    </style>
+</head>
+<body>
+    <% include ../../../components/header.ejs %>
+    <div class="container" id="main_area">
+        <div class="page-header">
+            <h2>商品管理服務</h2>
+        </div>
+        <div>
+            <ol class="breadcrumb">
+                <li><a href="/products/add_product" id="add">新增商品</a></li>
+                <li><a href="#" id="remove">刪除全部</a></li>
+            </ol>
+        </div>
+        <% if(items.length==0){%>
+            <div class="well well-lg"><h4 class="text-center">目前無任何商品</h4></div>
+        <%}else{%>
+        <div class="row">
+            <% items.forEach(function (data) {%>
+                <div class="col-xs-18 col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <img class="img-responsive img-min-height" src="http://localhost:3000/uploads/<%=data.vendorName%>/<%=data.image%>">
+                        <div class="caption">
+                            <h4><%=data.product_name%> (<%=data.price%>$)</h4>
+                            <p><%=data.introduction%></p>
+                            <a href="#" class="btn btn-danger btn-xs pull-right" role="button"><i class="glyphicon glyphicon-trash"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">編輯</a> <a href="#" class="btn btn-default btn-xs" role="button">人氣度</a>
+                        </div>
+                    </div>
+                </div>
+            <%}) %>
+        </div><!--/row-->
+        <%} %>
+    </div>
+</body>
+</html>

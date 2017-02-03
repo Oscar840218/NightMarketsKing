@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Introduce</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function($) {
+
+            $('#myCarousel').carousel({
+                interval: 5000
+            });
+
+            //Handles the carousel thumbnails
+            $('[id^=carousel-selector-]').click(function () {
+                var id_selector = $(this).attr("id");
+                try {
+                    var id = /-(\d+)$/.exec(id_selector)[1];
+                    console.log(id_selector, id);
+                    $('#myCarousel').carousel(parseInt(id));
+                } catch (e) {
+                    console.log('Regex failed!', e);
+                }
+            });
+            // When the carousel slides, auto update the text
+            $('#myCarousel').on('slid.bs.carousel', function (e) {
+                var id = $('.item.active').data('slide-number');
+                $('#carousel-text').html($('#slide-content-'+id).html());
+            });
+        });
+    </script>
+    <style>
+        .thumbnail {
+            position:relative;
+            overflow:hidden;
+        }
+
+        .caption {
+            position:absolute;
+            top:-100%;
+            right:0;
+            background:rgba(66, 139, 202, 0.75);
+            width:100%;
+            height:100%;
+            padding:2%;
+            text-align:center;
+            color:#fff !important;
+            z-index:2;
+            -webkit-transition: all 0.5s ease-in-out;
+            -moz-transition: all 0.5s ease-in-out;
+            -o-transition: all 0.5s ease-in-out;
+            -ms-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+        }
+        .thumbnail:hover .caption {
+            top:0%;
+        }
+
+        .glyphicon-star{
+            font-size: 22px;
+        }
+        .glyphicon-star-empty{
+            font-size: 22px;
+        }
+        a.list-group-item {
+            height:auto;
+            min-height:210px;
+        }
+        .img-min-height-width-100{
+            max-height: 190px;
+        }
+        .carousel-img-height-min{
+            min-height: 110px;
+        }
+        .stars {
+            margin:20px auto 1px;
+        }
+        .btn-primary-spacing{
+            padding-right: 2px;
+            padding-left: 2px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+    </style>
+</head>
+<body>
+<% include ../components/header.ejs %>
+
+    <div class="container" id="main_area">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1><%=name%></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li><a data-toggle="tab" href="#basic_info">店家資料</a></li>
+            <li><a data-toggle="tab" href="#popular_item">人氣商品</a></li>
+            <li><a data-toggle="tab" href="#items">商品一覽</a></li>
+            <li><a data-toggle="tab" href="#activity">優惠活動</a></li>
+            <li><a data-toggle="tab" href="#disscuss">討論區</a></li>
+        </ul>
+
+        <div class="tab-content">
+
+            <div id="basic_info" class="tab-pane fade in active">
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="well well-lg">
+                            <div class="row">
+                                <% items.forEach(function (data) {%>
+                                <div class="col-md-6"><h4>店家類別: <%=data.select_category%></h4></div>
+                                <div class="col-md-5 text-right">
+                                    <div class="btn-group" role="group" aria-label="...">
+                                        <a href="#" class="btn btn-primary-spacing"><img width="40" height="40" src="http://localhost:3000/images/fb-icon.png"></a>
+                                        <a href="#" class="btn btn-primary-spacing"><img width="43" height="43" src="http://localhost:3000/images/line-icon.png"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div><h4>地址: <%=data.address%></h4></div><br>
+                            <div><h4>連絡電話: <%=data.phone%></h4></div><br>
+                            <div><h4>介紹: </h4></div>
+                            <div><h5><%=data.introduction%></h5></div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <img class="img-responsive" width="700" height="800" src="http://localhost:3000/uploads/<%=data.image%>">
+                    </div>
+                </div>
+                <%}) %>
+            </div>
+
+            <div id="popular_item" class="tab-pane fade in active">
+                <% include market_components/products/popular_products.ejs %>
+            </div>
+
+            <div id="items" class="tab-pane fade in active">
+                <br>
+                <% include market_components/products/all_products.ejs %>
+            </div>
+
+            <div id="activity" class="tab-pane fade in active">
+                <h3>活動消息:</h3>
+                <br>
+                <% if(activities.length==0){%>
+                <div class="well well-lg"><h4 class="text-center">目前無舉辦任何活動</h4></div>
+                <%}else{%>
+                <div class="row">
+                    <% activities.forEach(function (data) {%>
+                    <div class="col-md-5">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><%=data.activity_name%></h3>
+                            </div>
+                            <div class="panel-body">
+                                <h4>活動日期: <%=data.start_time%> ~ <%=data.end_time%></h4>
+                                <h4>內容:</h4>
+                                <h5><%=data.content%></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <%}) %>
+                </div>
+                <%}%>
+            </div>
+            <div id="disscuss" class="tab-pane fade in active">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3>最新評論(每星期刪除一次)</h3>
+                    </div>
+                    <div class="col-md-4">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <br>
+                <% include market_components/comment/comments.ejs %>
+                <% if(!user){%>
+                <form action="/comment/newPage" method="post">
+                    <input type="hidden" name="vendor" value=<%=name%>>
+                    <input type="submit" class="btn btn-primary" value="發表意見">
+                </form>
+                <%}%>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

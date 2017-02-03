@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Information</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="../javascripts/jquery.tinyMap.js" ></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+        #map{
+            height: 400px;
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+<% include ../components/header.ejs %>
+<div class="container-fluid" id="main_area">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="page-header">
+                <h1><%=name%></h1>
+            </div>
+        </div>
+    </div>
+        <% include market_introduction.ejs %>
+    <hr>
+    <div class="row">
+        <div class="col-md-8">
+            <h3>攤販列表</h3>
+            <% include market_components/vendors_table.ejs %>
+        </div>
+    </div>
+</div>
+<% include ../components/footer.ejs %>
+</body>
+</html>

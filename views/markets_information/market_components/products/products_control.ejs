@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title>Index</title>
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="../stylesheets/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                function init(){
+                    $("#main_area").hide().delay(200).fadeIn('slow');
+                }
+                init();
+
+                $(':file').on('fileselect', function(event, numFiles, label) {
+
+                    var input = $(this).parents('.input-group').find(':text'),
+                        log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                    if( input.length ) {
+                        input.val(log);
+                    } else {
+                        if( log ) alert(log);
+                    }
+
+                });
+
+            });
+            $(document).on('change', ':file', function() {
+                var input = $(this),
+                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [numFiles, label]);
+            });
+        </script>
+    </head>
+    <body>
+    <% include ../../../components/header.ejs %>
+        <div class="container" id="main_area">
+            <div class="page-header">
+                <h2>新增/更新商品</h2>
+            </div>
+            <% if(err){%>
+                <div class="alert alert-danger"><%=err%></div>
+            <%} %>
+            <form action="/products/add_product" method="post" class="form-horizontal" enctype="multipart/form-data" >
+
+                <div class="form-group">
+                    <label class="col-md-1 control-label" for="name">商品名稱</label>
+                    <div class="col-md-4">
+                        <input id="name" name="name" type="text" class="form-control input-md" required="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-1 control-label" for="image">商品相片</label>
+                    <div class="col-md-4">
+
+                        <div class="input-group">
+                            <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                        Browse&hellip; <input type="file" style="display: none;" name="image" multiple>
+                    </span>
+                            </label>
+                            <input type="text" class="form-control" readonly>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-1 control-label" for="price">售價</label>
+                    <div class="col-md-4">
+                        <input id="price" name="price" type="number" placeholder="" class="form-control input-md" required="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="introduction" class="col-md-1 control-label">產品介紹:</label>
+                    <div class="col-md-4">
+                        <textarea class="form-control" rows="5" id="introduction" name="introduction" required=""></textarea>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label class="col-md-1 control-label" for="submit"></label>
+                    <div class="col-md-4">
+                        <button id="submit" name="submit" class="btn btn-primary">SUBMIT</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </body>
+</html>

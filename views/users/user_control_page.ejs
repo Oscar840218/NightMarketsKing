@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Information</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+<% include ../components/header.ejs %>
+<div class="container" id="main_area">
+    <h2>使用者資料</h2>
+    <p>可在此業確認基本資料以及修改</p>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#basic_info">基本資料</a></li>
+        <li><a data-toggle="tab" href="#vendor_info">資料分析統計</a></li>
+        <li><a data-toggle="tab" href="#activity_info">活動專區</a></li>
+        <li><a data-toggle="tab" href="#disscuss_info">討論區</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <br>
+        <div id="basic_info" class="tab-pane fade in active">
+            <div class="panel panel-info">
+                <div class="panel-heading"><h4>使用者資料</h4></div>
+                <div class="panel-body">
+                    <form action="/users/updatePage" method="post">
+                        <div>使用者名稱: <%=user.username%></div>
+                        <br>
+                        <div>E-mail: <%=user.email%></div>
+                        <br>
+                        <div>居住地址: <%=user.address%></div>
+                        <br>
+                        <div>住家電話: <%=user.phone%></div>
+                        <br>
+                        <div>手機號碼: <%=user.cellphone%></div>
+                        <br>
+                        <div>當前選擇方案: <%=user.payment%></div>
+                        <br>
+                        <br>
+                        <input type="hidden" name="type" value="user">
+                        <button type="submit" class="btn btn-default">修改資料</button>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div class="panel panel-success">
+                <div class="panel-heading"><h4>攤位資料</h4></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                                <div>店家名稱: <%=user.vendor%></div>
+                                <br>
+                                <div>類型: <%=user.select_category%></div>
+                                <br>
+                                <div>所在夜市: <%=user.market%></div>
+                                <br>
+                                <div>店家介紹: <%=user.introduction%></div>
+                                <br>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <form action="/users/updatePage" method="post">
+                                            <input type="hidden" name="type" value="vendor">
+                                            <button type="submit" class="btn btn-default">修改資料</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="/products/products_control" class="btn btn-default">商品資訊</a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <form action="/areas/vendors" method="get">
+                                            <input class="hidden" name="vendorName" value=<%=user.vendor%>>
+                                            <button class="btn btn-default">前往資訊頁</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <form action="/areas/QR_generator" method="get" target="_blank">
+                                            <input class="hidden" type="text" name="QR_info" value=<%=user.vendor%>>
+                                            <button class="btn btn-default">產生QR Code</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                        </div>
+                        <div class="col-md-5">
+                            <img  width="200" height="200" src="http://localhost:3000/uploads/<%=user.image%>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="vendor_info" class="tab-pane fade">
+            <% if(chartData){%>
+                <% include ../charts/charts_info_table.ejs %>
+            <%}else{%>
+                <% include ../charts/start_chart_modal.ejs %>
+            <%} %>
+        </div>
+        <div id="activity_info" class="tab-pane fade">
+           <% include activities_manage.ejs %>
+        </div>
+        <div id="disscuss_info" class="tab-pane fade">
+            <h3>Menu 2</h3>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+        </div>
+    </div>
+</div>
+<hr>
+</body>
+</html>

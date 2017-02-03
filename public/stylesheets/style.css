@@ -1,0 +1,77 @@
+body {
+  background-color:snow;
+  font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", sans-serif;
+}
+
+.no-padding {
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.well {
+  background: rgb(255, 255, 255);
+}
+
+#page_footer{
+  background-color: dimgray;
+  height: 80px;
+  color: white;
+}
+
+#table_filter {
+  background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
+
+.start_chart_btn{
+  height: 50px;
+  font-size: 20px;
+
+}
+.btn_circle{
+  font-size: 22px;
+  height: 200px;
+  width: 200px;
+}
+.btn_area{
+  font-size: 22px;
+  height: 200px;
+  width: 200px;
+}
+.btn_bar{
+  font-size: 22px;
+  height: 200px;
+  width: 200px;
+}
+.btn_table{
+  font-size: 22px;
+  height: 200px;
+  width: 200px;
+}
+
+.glyphicon{
+  font-size: 50px;
+}
+.field_item
+{
+  margin-bottom: 10px;
+}
+.field_number
+{
+  margin-bottom: 10px;
+}
+.field_number_income
+{
+  margin-bottom: 10px;
+}
+.filed_number_cost
+{
+  margin-bottom: 10px;
+}

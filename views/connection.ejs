@@ -1,0 +1,107 @@
+<html>
+<head>
+    <title>Index</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="../stylesheets/user_register.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="../javascripts/jquery.tinyMap.js" ></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+        #map{
+            height: 440px;
+            width: 560px;
+        }
+    </style>
+</head>
+<body>
+<% include components/header.ejs %>
+<div class="container" id="top_area">
+    <div class="jumbotron jumbotron-sm" style="background-color:white;margin-top:2%;">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h1 class="h2" style="margin-top:-2%">
+                    NIGHTMARKET_KING 夜市資訊王
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" id="main_area">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 style="line-height:20%;"><i class="fa fa-home fa-1x" style="line-height:6%;color:#339966"></i> 開發團隊:</h3>
+                <p style="margin-top:6%;line-height:35%">TKU Embedded Team</p>
+                <br />
+                <br />
+                <h3 style="line-height:20%;"><i class="fa fa-envelope fa-1x" style="line-height:6%;color:#339966"></i> E-Mail:</h3>
+                <p style="margin-top:6%;line-height:35%">oscar840218@gmail.com</p>
+                <br />
+                <br />
+                <h3 style="line-height:20%;"><i class="fa fa-user fa-1x" style="line-height:6%;color:#339966"></i> 電話:</h3>
+                <p style="margin-top:6%;line-height:35%">02-28724689</p>
+                <br />
+                <br />
+                <h3 style="line-height:20%;"><i class="fa fa-yelp fa-1x" style="line-height:6%;color:#339966"></i> 地址:</h3>
+                <p style="margin-top:6%;line-height:35%"><a href="http://www.tku.edu.tw/">25137 新北市淡水區英專路151號</a></p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div id="map"></div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+
+                    $.fn.tinyMapConfigure({
+                        // Google Maps API URL
+                        'api': '//maps.googleapis.com/maps/api/js',
+                        // Google Maps API Version
+                        'v': '3.21',
+                        // Google Maps API Key，預設 null
+                        'key': 'AIzaSyAVHhGlUd6PDpK2MwDodr1VPdIIi_GixJA',
+                        // 使用的地圖語言
+                        'language': 'zh‐TW',
+
+                        // 使用個人化的地圖，預設 false
+                        'signed_in': false
+                        // MarkerClustererPlus.js 路徑
+                        // 預設 'https://cdn.essoduke.org/js/tinyMap/markerclusterer.js'
+                        // 建議下載至自有主機，避免讀取延遲造成無法使用。
+
+                        // MarkerWithLabel.js 路徑
+                        // 預設 'https://cdn.essoduke.org/js/tinyMap/markerwithlabel.js'
+                        // 建議下載至自有主機，避免讀取延遲造成無法使用。
+
+                    });
+
+
+
+                    var Map = $("#map");
+
+                    Map.tinyMap({
+                        'center': ['25.1753437', '121.4478139'],
+                        'zoom':17,
+                        'disableDefaultUI':true,
+                        'scrollwheel':false,
+                        'marker':[
+                            {
+                                'addr': ['25.1753437', '121.4478139'],
+                                'newLabel': '文字標籤',
+                                'newLabelCSS': 'labels',
+                                // 自訂外部圖示
+
+                                // 動畫效果
+                                'animation': 'DROP'
+                            }
+                        ]
+                    });
+                });
+
+
+            </script>
+        </div>
+    </div>
+</div>
+</body>
+</html>

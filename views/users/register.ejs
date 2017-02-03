@@ -1,0 +1,312 @@
+<html>
+<head>
+    <title>Index</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="../stylesheets/user_register.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="../javascripts/register_validation.js"></script>
+</head>
+<body>
+<% include ../components/header.ejs %>
+<div class="container">
+    <br>
+    <% if(errors!=null){%>
+    <% errors.forEach(function (item){ %>
+    <div class="alert alert-danger"><%=item.msg%></div>
+    <%}) %>
+    <% } %>
+
+    <div class="row" id="main_area">
+        <section>
+                <form action="/users/register" method="post" class="form-horizontal" id="register_form" enctype="multipart/form-data">
+
+                        <!------------------------------------user info------------------------------------>
+
+                            <h2>使用者資料</h2>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="userName">使用者名稱</label>
+                                <div class="col-md-4">
+                                    <input id="userName" name="userName" type="text" placeholder="UserName" class="form-control input-md">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="password">密碼</label>
+                                <div class="col-md-4">
+                                    <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" >
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="password_again">確認密碼</label>
+                                <div class="col-md-4">
+                                    <input id="password_again" name="password_again" type="text" placeholder="Password_Again" class="form-control input-md">
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="password_hint">密碼提示</label>
+                                <div class="col-md-4">
+                                    <select id="subject" name="password_hint" class="form-control">
+                                        <option value="na" selected="">請選擇: </option>
+                                        <option value="city">出生的城市</option>
+                                        <option value="birthday">朋友的生日</option>
+                                        <option value="nick_name">常用的暱稱</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="email">Email</label>
+                                <div class="col-md-4">
+                                    <input id="email" name="email" type="text" placeholder="email" class="form-control input-md" >
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="phone">住家電話</label>
+                                <div class="col-md-4">
+                                    <input id="phone" name="phone" type="number" placeholder="" class="form-control input-md" >
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="cellphone">手機</label>
+                                <div class="col-md-4">
+                                    <input id="cellphone" name="cellphone" type="number" placeholder="" class="form-control input-md" >
+
+                                </div>
+                            </div>
+
+                            <!-- Multiple Radios (inline) -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="Gender">性別</label>
+                                <div class="col-md-4">
+                                    <label class="radio-inline" for="Gender_male">
+                                        <input type="radio" name="Gender" id="Gender_male" value="我是男性" checked="checked">
+                                        我是男性
+                                    </label>
+                                    <label class="radio-inline" for="Gender_female">
+                                        <input type="radio" name="Gender" id="Gender_female" value="我是女性">
+                                        我是女性
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="news">我想收到最新消息</label>
+                                <div class="col-md-4">
+                                    <label class="radio-inline" for="news_yes">
+                                        <input type="radio" name="news" id="news_yes" value="yes" checked="checked">
+                                        我是男性
+                                    </label>
+                                    <label class="radio-inline" for="Gender_female">
+                                        <input type="radio" name="news" id="news_no" value="no">
+                                        我是女性
+                                    </label>
+                                </div>
+                            </div>
+
+                        <!---------------------------------vendor info---------------------------------->
+                        <hr>
+
+                            <h2>店家資料</h2>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="vendor">店家名稱</label>
+                                <div class="col-md-4">
+                                    <input id="vendor" name="vendor" type="text" placeholder="" class="form-control input-md">
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="select_category">店家種類</label>
+                                <div class="col-md-4">
+                                    <select id="select_category" name="select_category" class="form-control input-md">
+                                        <option>美食小吃</option>
+                                        <option>飲料</option>
+                                        <option>衣裝服飾</option>
+                                        <option>其他</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="market">所在夜市名稱</label>
+                                <div class="col-md-4">
+                                    <input id="market" name="market" type="text" placeholder="" class="form-control input-md" >
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="address">主要地址</label>
+                                <div class="col-md-4">
+                                    <input id="address" name="address" type="text" placeholder="" class="form-control input-md" >
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="zip">郵遞區號</label>
+                                <div class="col-md-4">
+                                    <input id="zip" name="zip" type="text" placeholder="Zip Code" class="form-control input-md">
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="phone">商家電話</label>
+                                <div class="col-md-4">
+                                    <input id="vendor_phone" name="vendor_phone" type="number" placeholder="" class="form-control input-md" >
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="introduction" class="col-md-4 control-label">店家介紹:</label>
+                                <div class="col-md-4">
+                                    <textarea class="form-control" rows="5" id="introduction" name="introduction" ></textarea>
+                                </div>
+                            </div>
+
+                        <!--------------------------image info------------------------>
+                        <hr>
+
+                            <h2>店家相片</h2>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="image">店家相片</label>
+                                <div class="col-md-4">
+
+                                    <div class="input-group">
+                                        <label class="input-group-btn">
+                                    <span class="btn btn-primary">
+                                        Browse&hellip; <input type="file" style="display: none;" name="image" multiple>
+                                    </span>
+                                        </label>
+                                        <input type="text" class="form-control" readonly>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        <!--------------------------complete------------------------>
+                        <hr>
+
+                            <h2>請選擇繳費制度</h2>
+                            <br>
+                            <!-- Plans -->
+                            <section id="plans">
+                                <div class="container">
+                                    <div class="row">
+
+                                        <!-- item -->
+                                        <div class="col-md-4 text-center">
+                                            <div class="panel panel-danger panel-pricing">
+                                                <div class="panel-heading">
+                                                    <i class="fa fa-desktop"></i>
+                                                    <h3>Plan 1</h3>
+                                                </div>
+                                                <div class="panel-body text-center">
+                                                    <p><strong>免費(體驗30天)</strong></p>
+                                                </div>
+                                                <ul class="list-group text-center">
+                                                    <li class="list-group-item"><i class="fa fa-check"></i> Personal use</li>
+                                                    <li class="list-group-item"><i class="fa fa-check"></i> Unlimited projects</li>
+                                                    <li class="list-group-item"><i class="fa fa-check"></i> 27/7 support</li>
+                                                </ul>
+                                                <div class="panel-footer">
+                                                    <div class="radio">
+                                                        <label><input type="radio" name="payment" value="免費(體驗30天)" checked="checked"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /item -->
+
+                                        <!-- item -->
+                                        <div class="col-md-4 text-center">
+                                            <div class="panel panel-warning panel-pricing">
+                                                <div class="panel-heading">
+                                                    <i class="fa fa-desktop"></i>
+                                                    <h3>Plan 2</h3>
+                                                </div>
+                                                <div class="panel-body text-center">
+                                                    <p><strong>300$ / 月</strong></p>
+                                                </div>
+                                                <ul class="list-group text-center">
+                                                    <li class="list-group-item"><i class="fa fa-check"></i> Personal use</li>
+                                                    <li class="list-group-item"><i class="fa fa-check"></i> Unlimited projects</li>
+                                                    <li class="list-group-item"><i class="fa fa-check"></i> 27/7 support</li>
+                                                </ul>
+                                                <div class="panel-footer">
+                                                    <div class="radio">
+                                                        <label><input type="radio" name="payment" value="300/月"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /item -->
+
+                                        <!-- item -->
+                                        <div class="col-md-4 text-center">
+                                            <div class="panel panel-success panel-pricing">
+                                                <div class="panel-heading">
+                                                    <i class="fa fa-desktop"></i>
+                                                    <h3>Plan 3</h3>
+                                                </div>
+                                                <div class="panel-body text-center">
+                                                    <p><strong>3000$ / 年</strong></p>
+                                                </div>
+                                                <ul class="list-group text-center">
+                                                    <li class="list-group-item"><i class="fa fa-check"></i> Personal use</li>
+                                                    <li class="list-group-item"><i class="fa fa-check"></i> Unlimited projects</li>
+                                                    <li class="list-group-item"><i class="fa fa-check"></i> 27/7 support</li>
+                                                </ul>
+                                                <div class="panel-footer">
+                                                    <div class="radio">
+                                                        <label><input type="radio" name="payment" value="$3000/year"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /item -->
+
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- /Plans -->
+                            <br>
+                            <ul class="list-inline pull-right">
+                                <li><button id="submit" name="submit" class="btn btn-primary">Complete</button></li>
+                            </ul>
+                </form>
+
+        </section>
+    </div>
+</div>
+
+</body>
+</html>

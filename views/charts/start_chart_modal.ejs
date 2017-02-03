@@ -1,0 +1,66 @@
+<button type="button" class="btn btn-primary default btn-block start_chart_btn" data-toggle="modal" data-target="#popUpWindow">添加圖表+</button>
+<div class="modal fade" id="popUpWindow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--- header  -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">請選擇圖表</h3>
+            </div>
+            <!--- body  -->
+            <div class="modal-body">
+                <div class="container">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <form action="/chart/type" method="post">
+                                    <input type="hidden" name="chart_type" value="圓餅圖" >
+                                    <button type="submit" class="btn btn-success btn_circle">
+                                        圓餅圖
+                                        <br>
+                                        <br>
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-md-3">
+                                <form action="/chart/type" method="post">
+                                    <input type="hidden" value="長條圖" name="chart_type">
+                                    <button type="submit" class="btn btn-info btn_bar" disabled>
+                                        長條圖
+                                        <br>
+                                        <br>
+                                        <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <form action="/chart/type" method="post">
+                                    <input type="hidden" value="區域圖" name="chart_type">
+                                    <button type="submit" class="btn btn-default btn_area" >
+                                        區域圖
+                                        <br>
+                                        <br>
+                                        <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-md-3">
+                                <form action="/chart/type" method="post">
+                                    <input type="hidden" value="表單" name="chart_type">
+                                    <button type="submit" class="btn btn-warning btn_table" disabled>
+                                        人事表單
+                                        <br>
+                                        <br>
+                                        <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

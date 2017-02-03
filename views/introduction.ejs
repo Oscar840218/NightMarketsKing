@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title>Index</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#area_header").hide().delay(200).fadeIn('slow');
+            $("#area_main").hide().delay(200).fadeIn('slow');
+            $("#page_footer").hide().delay(200).fadeIn('slow');
+        });
+    </script>
+    <style>
+        .jumbotron{
+            background: url('http://localhost:3000/images/blur.jpg');
+            color: white;
+            text-shadow: black 0.3em 0.3em 0.3em;
+            min-height: 440px;
+
+        }
+
+    </style>
+</head>
+<body>
+<% include components/header.ejs %>
+
+<div class="jumbotron container-fluid" id="area_header">
+    <blockquote>
+        <h2>發現故鄉的好滋味</h2>
+        <h3>讓台灣的傳統夜市文化傳承下去,用堅持讓世界看見</h3>
+        <br>
+        <p>夜市是台灣非常重要的文化之一,能夠讓在地的文化被世界看見</p>
+        <p>然而很多夜市攤商缺乏管道來招攬生意,導致逐一消失</p>
+        <p>這個網站提供了攤商一個平台,讓世界各地的訪客都可以看到</p>
+        <p>我們也提供了網路工具來幫助計算成本和營業額,減輕攤商負擔</p>
+        <p>也希望透過這個網站讓台灣夜市文化被更多人看見</p>
+    </blockquote>
+</div>
+
+<div class="container-fluid" id="area_main">
+    <div class="row">
+        <div class="col-md-6">
+            <% include components/honor_table.ejs %>
+        </div>
+        <div class="col-md-4">
+            <% include components/news_table.ejs %>
+        </div>
+    </div>
+</div>
+
+<% include components/footer.ejs %>
+
+
+</body>
+</html>
+

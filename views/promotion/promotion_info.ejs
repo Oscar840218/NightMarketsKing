@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>Introduce</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="../../javascripts/bootpag.js"></script>
+    <script>
+        $(document).ready(function() {
+            function init() {
+                $("#jumbo_area").hide().delay(100).fadeIn('slow');
+                $("#main_area").hide().delay(200).fadeIn('slow');
+            }
+
+            init();
+        });
+    </script>
+    <style>
+        .jumbotron{
+            color: white;
+            text-shadow: 2px 2px 4px #000000;
+            background: url('../../images/blur.jpg');
+        }
+    </style>
+</head>
+<body>
+    <% include ../components/header.ejs %>
+    <% if(user){%>
+    <div class="container-fulid" id="jumbo_area">
+        <div class="row">
+            <div class="jumbotron">
+                <div class="container">
+                        <h2>各式各樣的優惠活動!</h2>
+                        <p>提供優惠服務,吸引更多顧客~利用網路塑造你的商業領域!</p>
+                        <p><a class="btn btn-primary btn-lg" href="/promotion/register">註冊活動</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%}%>
+    <div class="container" id="main_area">
+        <div class="page-header">
+            <h2>近期內的優惠活動:</h2>
+        </div>
+        <div id="content" class="list-group">
+           <!--content-->
+        </div>
+        <div id="pager" class="text-center"></div>
+
+    </div>
+    <input type="hidden" value="<%= totalRecords %>" id="totalRecords">
+    <input type="hidden" value="<%= size %>" id="size">
+    <script src="../../javascripts/promotion_pagination.js"></script>
+</body>
+
+</html>

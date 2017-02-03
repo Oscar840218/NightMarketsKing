@@ -1,0 +1,24 @@
+<div class="container">
+
+    <div class="row">
+        <% products.forEach(function (data) {%>
+            <div class="col-xs-6 col-sm-4 col-md-3">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h4><%=data.product_name%></h4>
+                        <p><%=data.introduction%></p>
+                        <p><a href="#" class="label label-primary"><h4>Like</h4></a></p>
+                    </div>
+                    <img class="img-min-height-width-100 img-responsive" src="http://localhost:3000/uploads/<%=data.vendorName%>/<%=data.image%>">
+                </div>
+            </div>
+        <%}) %>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            Original <a href="http://bootsnipp.com/snippets/featured/thumbnail-caption-hover-effect">Thumbnail Caption Hover Effect</a> by <a href="http://bootsnipp.com/sevenx.de">sevenx.de</a>
+        </div>
+    </div>
+
+</div><!-- /.container -->

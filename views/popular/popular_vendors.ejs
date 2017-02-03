@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Introduce</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function init() {
+                $("#main_area").hide().delay(200).fadeIn('slow');
+            }
+
+            init();
+        });
+    </script>
+</head>
+<body>
+<% include ../components/header.ejs %>
+<div class="container" id="main_area">
+    <div class="page-header">
+        <h1>熱門商家排行榜 <small>每星期結算</small></h1>
+    </div>
+    <br>
+
+</div>
+</body>
+</html>

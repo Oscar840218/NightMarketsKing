@@ -1,0 +1,31 @@
+<h3>目前您所進行中的活動</h3>
+<br>
+<% if(activityData){%>
+<table class="table">
+    <thead>
+    <tr>
+        <th><h4>活動名稱</h4></th>
+        <th><h4>起始時間</h4></th>
+        <th><h4>結束時間</h4></th>
+        <th><h4>內容</h4></th>
+        <th><h4>刪除</h4></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% activityData.forEach(function (data) {%>
+    <tr>
+        <td><h4><%=data.activity_name%></h4></td>
+        <td><h4><%=data.start_time%></h4></td>
+        <td><h4><%=data.end_time%></h4></td>
+        <td><h4><%=data.content%></h4></td>
+        <td><input type="submit" class="btn btn-danger" value="X"></td>
+    </tr>
+    <%}) %>
+    </tbody>
+</table>
+<%}else{%>
+<h4>未註冊任何活動</h4>
+<a href="/promotion/register" class="btn btn-info">前往註冊?</a>
+<%} %>
+<hr>
+<h3>相關的活動</h3>

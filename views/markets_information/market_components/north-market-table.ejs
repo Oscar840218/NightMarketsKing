@@ -1,0 +1,28 @@
+<div class="container" id="table-area">
+    <h1>北部夜市</h1>
+    <br>
+    <table class="table table-hover table-striped" id="table_notrh">
+        <thead>
+        <tr>
+            <th>名稱</th>
+            <th>營業時間</th>
+            <th>地址</th>
+            <th>評價</th>
+            <th>資訊</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% marketsdata.categoriesNorth.forEach(function (item){%>
+        <tr>
+            <form action="/areas/info" method="get">
+                <td><input type="hidden" name="market_name" value=<%=item.Name%>><h4><%=item.Name%></h4></td>
+                <td><input type="hidden" name="local_area" value="north"><h4><%=item.Time%></h4></td>
+                <td><h4><%=item.Address%></h4></td>
+                <td><h4><%=item.Point%></h4></td>
+                <td><input type="submit" class="btn btn-info" value="前往"></td>
+            </form>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>

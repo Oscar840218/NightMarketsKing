@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Introduce</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function init() {
+                $("#main_area").hide().delay(200).fadeIn('slow');
+            }
+
+            init();
+        });
+    </script>
+</head>
+<body>
+    <% include ../components/header.ejs %>
+    <div class="container" id="main_area">
+        <div class="page-header">
+            <h1>熱門夜市排行榜 <small>每星期結算</small></h1>
+        </div>
+        <br>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>排名</th>
+                <th>名稱</th>
+                <th>人氣度</th>
+                <th>資訊</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <form>
+                        <td><h4><span class="label label-warning">No.1</span></h4></td>
+                        <td><h4>士林夜市</h4></td>
+                        <td><h4>124</h4></td>
+                        <td><input type="submit" class="btn btn-info" value="前往"></td>
+                    </form>
+                </tr>
+                <tr>
+                    <form>
+                        <td><h4><span class="label label-default">No.2</span></h4></td>
+                        <td><h4>六合夜市</h4></td>
+                        <td><h4>92</h4></td>
+                        <td><input type="submit" class="btn btn-info" value="前往"></td>
+                    </form>
+                </tr>
+                <tr>
+                    <form>
+                        <td><h4><span class="label label-success">No.3</span></h4></td>
+                        <td><h4>寧夏夜市</h4></td>
+                        <td><h4>90</h4></td>
+                        <td><input type="submit" class="btn btn-info" value="前往"></td>
+                    </form>
+                </tr>
+                <tr>
+                    <form>
+                        <td><h4><span class="label label-primary">No.4</span></h4></td>
+                        <td><h4>羅東夜市</h4></td>
+                        <td><h4>86</h4></td>
+                        <td><input type="submit" class="btn btn-info" value="前往"></td>
+                    </form>
+                </tr>
+                <tr>
+                    <form>
+                        <td><h4><span class="label label-danger">No.5</span></h4></td>
+                        <td><h4>逢甲夜市</h4></td>
+                        <td><h4>80</h4></td>
+                        <td><input type="submit" class="btn btn-info" value="前往"></td>
+                    </form>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

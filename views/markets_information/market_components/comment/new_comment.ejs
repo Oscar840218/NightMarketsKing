@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Introduce</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            function init(){
+                $("#main_area").hide().delay(200).fadeIn('slow');
+            }
+            init();
+
+        });
+    </script>
+</head>
+<body>
+<% include ../../../components/header.ejs %>
+
+<div class="container" id="main_area">
+    <% if(err!=''){%>
+        <div class="alert alert-danger"><%=err%></div>
+    <%} %>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>注意!</strong> 請別填入攻擊性或是不雅文字,反則後果自行負責
+    </div>
+
+    <form action="/comment/newData" method="post" class="form-horizontal">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="vendorName">店家名稱:</label>
+            <div class="col-md-4">
+                <input id="vendorName" name="vendorName" type="text" class="form-control input-md"  value=<%=vendor%>>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="userName">你的名稱:</label>
+            <div class="col-md-4">
+                <input id="userName" name="userName" type="text" placeholder="" class="form-control input-md" required="">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="score">評分:</label>
+            <div class="col-md-4">
+                <label class="radio-inline" for="score_high">
+                    <input type="radio" name="score" id="score_high" value="8.5" >
+                    很棒(7~10)
+                </label>
+                <label class="radio-inline" for="score_mid">
+                    <input type="radio" name="score" id="score_mid" value="5.5" checked="checked">
+                    普通(4~7)
+                </label>
+                <label class="radio-inline" for="score_low">
+                    <input type="radio" name="score" id="score_low" value="1.5">
+                    待加強(0~3)
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="comment" class="col-md-4 control-label">評論:</label>
+            <div class="col-md-4">
+                <textarea class="form-control" rows="5" id="introduction" name="comment" required=""></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="submit"></label>
+            <div class="col-md-4">
+                <button id="submit" name="submit" class="btn btn-primary">SUBMIT</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

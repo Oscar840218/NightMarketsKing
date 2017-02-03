@@ -1,0 +1,198 @@
+<html>
+
+    <head>
+        <title>Index</title>
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="../stylesheets/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                function init(){
+                    $("#main_area").hide().delay(150).fadeIn('slow');
+                }
+                init();
+
+                $(':file').on('fileselect', function(event, numFiles, label) {
+
+                    var input = $(this).parents('.input-group').find(':text'),
+                        log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                    if( input.length ) {
+                        input.val(log);
+                    } else {
+                        if( log ) alert(log);
+                    }
+
+                });
+
+            });
+            $(document).on('change', ':file', function() {
+                var input = $(this),
+                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [numFiles, label]);
+            });
+        </script>
+    </head>
+    <body>
+        <% include ../components/header.ejs %>
+        <div class="container" id="main_area">
+            <% if(errors){%>
+                <% errors.forEach(function (err) {%>
+                    <div class="alert alert-danger"><%=err.msg%></div>
+                <%}) %>
+            <%} %>
+            <div class="page-header">
+                <h2>更新資料</h2>
+            </div>
+            <% if(type=="user"){%>
+                <form action="/users/update_user" method="post" class="form-horizontal">
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="userName">使用者名稱</label>
+                        <div class="col-md-4">
+                            <input id="userName" name="userName" type="text" placeholder="UserName" class="form-control input-md" required="" value=<%=username%>>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="email">Email</label>
+                        <div class="col-md-4">
+                            <input id="email" name="email" type="text" placeholder="email" class="form-control input-md" required="" value=<%=email%>>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="address">主要地址</label>
+                        <div class="col-md-4">
+                            <input id="address" name="address" type="text" placeholder="" class="form-control input-md" required="" value=<%=address%>>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="zip">郵遞區號</label>
+                        <div class="col-md-4">
+                            <input id="zip" name="zip" type="text" placeholder="Zip Code" class="form-control input-md" required="" value=<%=zip%>>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="phone">住家電話</label>
+                        <div class="col-md-4">
+                            <input id="phone" name="phone" type="text" placeholder="" class="form-control input-md" required="" value=<%=phone%>>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="cellphone">手機</label>
+                        <div class="col-md-4">
+                            <input id="cellphone" name="cellphone" type="text" placeholder="" class="form-control input-md" required="" value=<%=cellphone%>>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="payment">欲更改的方案(如不變可不用選)</label>
+                        <div class="col-md-4">
+                            <label class="radio-inline" for="payment_1">
+                                <input type="radio" name="payment" id="payment_1" value="免費(體驗30天)">
+                                免費(體驗30天)
+                            </label>
+                            <label class="radio-inline" for="payment_2">
+                                <input type="radio" name="payment" id="payment_2" value="$3000/月">
+                                $3000/月
+                            </label>
+                            <label class="radio-inline" for="payment_3">
+                                <input type="radio" name="payment" id="payment_3" value="$30000/年">
+                                $30000/年
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="NEWS">想收到來自網站的最新消息嗎?</label>
+                        <div class="col-md-4">
+                            <label class="radio-inline" for="Dinner-0">
+                                <input type="radio" name="NEWS" id="NEWS_YES" value="yes" checked="checked">
+                                Yes
+                            </label>
+                            <label class="radio-inline" for="Dinner-1">
+                                <input type="radio" name="NEWS" id="NEWS_NO" value="no">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="type" value=<%=type%>>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="submit"></label>
+                        <div class="col-md-4">
+                            <button id="submit" name="submit" class="btn btn-primary">SUBMIT</button>
+                        </div>
+                    </div>
+
+                </form>
+            <%}else if(type=="vendor"){%>
+                <form action="/users/update_vendor" method="post" class="form-horizontal" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="vendor">店家名稱</label>
+                        <div class="col-md-4">
+                            <input id="vendor" name="vendor" type="text" placeholder="" class="form-control input-md" required="" value=<%=vendorName%>>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="select_category">店家種類</label>
+                        <div class="col-md-4">
+                            <select id="select_category" name="select_category" class="form-control input-md">
+                                <option>美食小吃</option>
+                                <option>飲料</option>
+                                <option>衣裝服飾</option>
+                                <option>其他</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="email">店家相片(如不變可不用上傳)</label>
+                        <div class="col-md-4">
+
+                            <div class="input-group">
+                                <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                        Browse&hellip; <input type="file" style="display: none;" name="image" multiple value=<%=image%>>
+                    </span>
+                                </label>
+                                <input type="text" class="form-control" readonly>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="market">所在夜市名稱</label>
+                        <div class="col-md-4">
+                            <input id="market" name="market" type="text" placeholder="" class="form-control input-md" required="" value=<%=market%>>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="introduction" class="col-md-4 control-label">店家介紹:</label>
+                        <div class="col-md-4">
+                            <textarea class="form-control" rows="5" id="introduction" name="introduction" required="" ><%=introduction%></textarea>
+                        </div>
+                    </div>
+                    <input type="hidden" name="type" value=<%=type%>>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="submit"></label>
+                        <div class="col-md-4">
+                            <button id="submit" name="submit" class="btn btn-primary">SUBMIT</button>
+                        </div>
+                    </div>
+                </form>
+            <% } %>
+        </div>
+
+    </body>
+</html>

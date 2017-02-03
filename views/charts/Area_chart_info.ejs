@@ -1,0 +1,52 @@
+<div class="page-header">
+    <h2>區域圖<small> 用途:歷年銷售分析,年度營收比較,未來趨勢....</small></h2>
+</div>
+<div>
+    <ol class="breadcrumb">
+        <li><a href="#" id="add">增加項目</a></li>
+        <li><a href="#" id="remove">減少項目</a></li>
+    </ol>
+</div>
+<br>
+<form class="form-horizontal" action="/chart/storeData" method="post">
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="title">標題</label>
+        <div class="col-md-3">
+            <input id="title" name="title" type="title" placeholder="" class="form-control input-md" required="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="date">日期</label>
+        <div class="col-md-3">
+            <input id="date" name="date" type="date" placeholder="" class="form-control input-md" required="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="period">時間單位</label>
+        <div class="col-md-3">
+            <select id="period" name="period" class="form-control input-md">
+                <option>年</option>
+                <option>月</option>
+                <option>日</option>
+                <option>星期</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="items">時間</label>
+        <div class="col-md-3 input_items">
+            <input name="items[]" type="text"  class="form-control input-md field_item" required="">
+        </div>
+        <label class="col-md-1 control-label" for="items">收入</label>
+        <div class="col-md-3 input_numbers_income">
+            <input name="numbers_income[]" type="number"  class="form-control input-md field_number_income" required="">
+        </div>
+        <label class="col-md-1 control-label" for="items">支出</label>
+        <div class="col-md-3 input_numbers_cost">
+            <input name="numbers_cost[]" type="number"  class="form-control input-md field_number_cost" required="">
+        </div>
+    </div>
+
+    <input id="type" name="type" type="hidden" placeholder="" value=<%=type%>>
+    <button id="submit" name="submit" class="btn btn-primary">SUBMIT</button>
+</form>

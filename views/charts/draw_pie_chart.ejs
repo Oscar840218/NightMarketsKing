@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <title>Chart</title>
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="../stylesheets/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                console.log('<%=numbers%>')
+
+                var data = google.visualization.arrayToDataTable([
+
+                    ['Task', 'Hours per Day'],
+                    <% for(var i=0;i<items.length;i++){%>
+                    ['<%=items[i]%>',<%=numbers[i]%>],
+                    <%} %>
+                ]);
+
+                var options = {
+                    title: '<%=title%>',
+                    'fontSize':'20px'
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                chart.draw(data, options);
+            }
+        </script>
+    </head>
+    <body>
+        <% include ../components/header.ejs %>
+        <div class="container">
+            <div class="row">
+                    <div><h3>圖表(<%=date%>):</h3></div>
+                    <br>
+                    <div id="piechart" style="width: 700px; height: 400px;"></div>
+            </div>
+            <hr>
+            <div class="row">
+                <div><h3>詳細資料:</h3></div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td><h4>項目</h4></td>
+                            <td><h4>數量</h4></td>
+                            <td><h4>比例</h4></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% for(var j=0;j<items.length;j++){%>
+                        <tr>
+                            <td><h4><%=items[j]%></h4></td>
+                            <td><h4><%=original_numbers[j]%></h4></td>
+                            <td><h4><%=numbers[j]%>%</h4></td>
+                        </tr>
+                    <%} %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chart_Information</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            var i = $('input').size() + 1;
+            function init(){
+
+            }
+            init();
+            $('#add').click(function() {
+                <% if(type=='圓餅圖'){%>
+                    $('<div><input type="text" class="form-control input-md field_item" name="items[]"  /></div>').fadeIn('slow').appendTo('.input_items');
+                    $('<div><input type="number" class="form-control input-md field_number" name="numbers[]"  /></div>').fadeIn('slow').appendTo('.input_numbers');
+                <%}else if(type=='長條圖'){%>
+
+                <%}else if(type=='區域圖'){%>
+                    $('<div><input type="text" class="form-control input-md field_item" name="items[]"  /></div>').fadeIn('slow').appendTo('.input_items');
+                    $('<div><input type="number" class="form-control input-md field_number_income" name="numbers_income[]"  /></div>').fadeIn('slow').appendTo('.input_numbers_income');
+                    $('<div><input type="number" class="form-control input-md field_number_cost" name="numbers_cost[]"  /></div>').fadeIn('slow').appendTo('.input_numbers_cost');
+                <%}else if(type=='表單'){%>
+
+                <%} %>
+
+                i++;
+            });
+            $('#remove').click(function() {
+                if(i > 1) {
+                    <% if(type=='圓餅圖'){%>
+                        $('.field_item:last').remove();
+                        $('.field_number:last').remove();
+                    <%}else if(type=='長條圖'){%>
+
+                    <%}else if(type=='區域圖'){%>
+                        $('.field_item:last').remove();
+                        $('.field_number_income:last').remove();
+                        $('.field_number_cost:last').remove();
+                    <%}else if(type=='表單'){%>
+
+                    <%} %>
+                    i--;
+                }
+            });
+        });
+
+    </script>
+</head>
+<body>
+<% include ../components/header.ejs %>
+<div class="container">
+    <% if(err){%>
+    <div class="alert alert-danger"><%=err%></div>
+    <%} %>
+    <% if(type=='圓餅圖'){%>
+        <% include Pie_chart_info.ejs %>
+    <%}else if(type=='長條圖'){%>
+
+    <%}else if(type=='區域圖'){%>
+        <% include Area_chart_info.ejs %>
+    <%}else if(type=='表單'){%>
+
+    <%} %>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Index</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="../stylesheets/slider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        function init(){
+          $("body").hide().delay(50).fadeIn('slow');
+        }
+        init();
+      });
+    </script>
+  </head>
+  <body>
+    <% include components/header.ejs %>
+    <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
+
+
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#bs-carousel" data-slide-to="1"></li>
+        <li data-target="#bs-carousel" data-slide-to="2"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item slides active">
+          <!-- Overlay -->
+          <div class="overlay"></div>
+          <div class="slide-1"></div>
+          <div class="hero">
+            <hgroup>
+              <h1>NIGHTMARKETS_KING</h1>
+              <h3>夜市資訊王_您的生活好幫手</h3>
+            </hgroup>
+            <a href="/connection/introduction" class="btn btn-hero btn-lg" role="button">了解更多</a>
+          </div>
+        </div>
+        <div class="item slides">
+          <!-- Overlay -->
+          <div class="overlay"></div>
+          <div class="slide-2"></div>
+          <div class="hero">
+            <hgroup>
+              <h1>享受在地的好滋味</h1>
+              <h3>隨時掌握即時優惠資訊</h3>
+            </hgroup>
+            <a href="/areas/north-area" class="btn btn-hero btn-lg" role="button">了解更多</a>
+          </div>
+        </div>
+        <div class="item slides">
+          <!-- Overlay -->
+          <div class="overlay"></div>
+          <div class="slide-3"></div>
+          <div class="hero">
+            <hgroup>
+              <h1>推廣台灣美食文化</h1>
+              <h3>建立一個平台讓世界知道</h3>
+            </hgroup>
+            <% if(user){%>
+              <a href="/users/user_control_page" class="btn btn-hero btn-lg" role="button">立即體驗</a>
+            <%}else{%>
+              <a href="/users/register" class="btn btn-hero btn-lg" role="button">立即體驗</a>
+            <%} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

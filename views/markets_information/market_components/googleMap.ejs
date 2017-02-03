@@ -1,0 +1,54 @@
+<div id="map"></div>
+<script type="text/javascript">
+$(document).ready(function () {
+
+    $.fn.tinyMapConfigure({
+        // Google Maps API URL
+        'api': '//maps.googleapis.com/maps/api/js',
+        // Google Maps API Version
+        'v': '3.21',
+        // Google Maps API Key，預設 null
+        'key': 'AIzaSyAVHhGlUd6PDpK2MwDodr1VPdIIi_GixJA',
+        // 使用的地圖語言
+        'language': 'zh‐TW',
+
+        // 使用個人化的地圖，預設 false
+        'signed_in': false
+        // MarkerClustererPlus.js 路徑
+        // 預設 'https://cdn.essoduke.org/js/tinyMap/markerclusterer.js'
+        // 建議下載至自有主機，避免讀取延遲造成無法使用。
+
+        // MarkerWithLabel.js 路徑
+        // 預設 'https://cdn.essoduke.org/js/tinyMap/markerwithlabel.js'
+        // 建議下載至自有主機，避免讀取延遲造成無法使用。
+
+    });
+
+
+
+    var Map = $("#map");
+
+    Map.tinyMap({
+       'center': ['<%=item.location.lat%>', '<%=item.location.lng%>'],
+       'zoom':18,
+       'disableDefaultUI':true,
+       'scrollwheel':false,
+       'marker':[
+           {
+               'addr': ['<%=item.location.lat%>', '<%=item.location.lng%>'],
+               'newLabel': '文字標籤',
+               'newLabelCSS': 'labels',
+               // 自訂外部圖示
+
+               // 動畫效果
+               'animation': 'DROP'
+           }
+       ]
+   });
+});
+
+
+</script>
+
+
+

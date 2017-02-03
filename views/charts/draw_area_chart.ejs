@@ -1,0 +1,70 @@
+<html>
+<head>
+    <title>Chart</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            console.log('<%=numbers_cost%>');
+            var data = google.visualization.arrayToDataTable([
+                ['<%=period%>', 'Sales', 'Expenses'],
+                <% for(var i=0;i<items.length;i++){%>
+                ['<%=items[i]%>',<%=numbers_income[i]%>,<%=numbers_cost[i]%>],
+                <%} %>
+            ]);
+
+            var options = {
+                title: '<%=title%>',
+                hAxis: {title: '單位:<%=period%>',  titleTextStyle: {color: '#333'}},
+                vAxis: {title: '$',minValue: 0}
+            };
+
+            var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+<% include ../components/header.ejs %>
+<div class="container">
+    <div class="row">
+        <div><h3>圖表(<%=date%>):</h3></div>
+        <br>
+        <div id="chart_div" style="width: 100%; height: 500px;"></div>
+    </div>
+    <hr>
+    <div class="row">
+        <div><h3>詳細資料:</h3></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td><h4>項目</h4></td>
+                    <td><h4>收入</h4></td>
+                    <td><h4>支出</h4></td>
+                    <td><h4>盈餘</h4></td>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var j=0;j<items.length;j++){%>
+                    <tr>
+                        <td><h4><%=items[j]%> (<%=period%>)</h4></td>
+                        <td><h4><%=numbers_income[j]%></h4></td>
+                        <td><h4><%=numbers_cost[j]%></h4></td>
+                        <td><h4><%= +numbers_income[j] - +numbers_cost[j] %></h4></td>
+                    </tr>
+                <%} %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

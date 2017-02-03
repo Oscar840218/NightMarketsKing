@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Areas</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="../javascripts/jquery.searchable.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            function init(){
+                $("#table-area").hide().delay(200).fadeIn('slow');
+                $("#search_area").hide().delay(200).fadeIn('slow');
+                $("#page_footer").hide().delay(400).fadeIn('slow');
+            }
+
+            init();
+            $( "#table_notrh" ).searchable({
+                searchType: 'fuzzy'
+            });
+            $( "#table_mid" ).searchable({
+                searchType: 'fuzzy'
+            });
+            $( "#table_south" ).searchable({
+                searchType: 'fuzzy'
+            });
+            $( "#table_east" ).searchable({
+                searchType: 'fuzzy'
+            });
+        });
+    </script>
+</head>
+<body>
+<% include ../components/header.ejs %>
+<br>
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li role="presentation"><a href="/areas/north-area"><h4>北部夜市</h4></a></li>
+            <li role="presentation"><a href="/areas/mid-area"><h4>中部夜市</h4></a></li>
+            <li role="presentation"><a href="/areas/south-area"><h4>南部夜市</h4></a></li>
+            <li role="presentation"><a href="/areas/east-area"><h4>東部夜市</h4></a></li>
+        </ul>
+    </div>
+<br>
+<div class="container" id="search_area">
+    <input type="search" id="search" value="" class="form-control" placeholder="Search">
+</div>
+<br>
+<% if(marketsdata.categoryAreaN==area){ %>
+    <% include market_components/north-market-table.ejs %>
+<%}else if(marketsdata.categoryAreaM==area){%>
+    <% include market_components/mid-market-table.ejs %>
+<%}else if(marketsdata.categoryAreaS==area){%>
+    <% include market_components/south-market-table.ejs %>
+<%}else if(marketsdata.categoryAreaE==area){%>
+    <% include market_components/east-market-table.ejs %>
+<%}%>
+
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="../stylesheets/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                function init(){
+                   $("#main_area").hide().delay(200).fadeIn('slow');
+                }
+                init();
+
+            });
+        </script>
+    </head>
+    <body>
+        <% include ../components/header.ejs %>
+        <% if(err){%>
+            <div class="container-fluid">
+                <div class="alert alert-danger"><%=err%></div>
+            </div>
+        <%} %>
+        <div class="container" id="main_area">
+            <div class="page-header">
+                <h1>活動註冊表單</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <form action="/promotion/register" method="post" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="activityName">活動名稱:</label>
+                            <div class="col-md-6">
+                                <input id="activityName" name="activityName" type="text" class="form-control input-md" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="start_time">活動開始日期:</label>
+                            <div class="col-md-6">
+                                <input id="start_time" name="start_time" type="date" class="form-control input-md" required="" min=<%=today%>>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="end_time">活動結束日期:</label>
+                            <div class="col-md-6">
+                                <input id="end_time" name="end_time" type="date" class="form-control input-md" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="content" class="col-md-3 control-label">活動內容:</label>
+                            <div class="col-md-6">
+                                <textarea class="form-control" rows="5" id="content" name="content" required=""></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="submit"></label>
+                            <div class="col-md-6">
+                                <button id="submit" name="submit" class="btn btn-primary">SUBMIT</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-3">
+                    <img src="http://128.199.118.143:3000/images/sheet_info.png" class="img-responsive" width="250" height="250">
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
